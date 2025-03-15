@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Ham phan hoach (chia mang thanh hai phan)
+int phantach(vector<int>& a, int l, int r) {
+  
+    // Chon phan tu chot
+    int pivot = a[r];
+  
+    // Chi so cua phan tu nho hon, 
+    // xac dinh vi tri dung cua pivot
+    int i = l - 1;
+
+    // Duyet mang tu l den r - 1,
+    // dua cac phan tu nho hon pivot ve ben trai
+    for (int j = l; j <= r - 1; j++) {
+        if (a[j] < pivot) {
+            i++;
+            swap(a[i], a[j]);
+        }
+    }
+    
+    // Dua pivot ve dung vi tri sau khi sap xep
+    swap(a[i + 1], a[r]);  
+    return i + 1;
+}
+
+// Ham sap xep Quick Sort
+void quickSort(vector<int>& a, int l, int r) {
+  
+    if (l < r) {
+      
+        // pi la chi so cua pivot sau khi phan hoach
+        int pi = phantach(a, l, r);
+
+        // Goi de quy sap xep cac phan tu nho hon
+        // va cac phan tu lon hon hoac bang
+        quickSort(a, l, pi - 1);
+        quickSort(a, pi + 1, r);
+    }
+}
+
+int main() {
+    vector<int> a = {10, 7, 8, 9, 1, 5};
+    int n = a.size();
+    quickSort(a, 0, n - 1);
+  
+    // In mang sau khi sap xep
+    for (int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+    return 0;
+}
