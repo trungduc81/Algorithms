@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Ham sap xep chen (Insertion Sort)
+void insertion_sort(int a[], int n) {
+    for (int i = 1; i < n; i++) { // Lap qua tung phan tu tu vi tri 1 den n-1
+        int key = a[i]; // Lay gia tri can chen
+        int j = i - 1;  
+
+        // Dich chuyen cac phan tu lon hon key sang ben phai de tao cho trong
+        while (j >= 0 && a[j] > key) { 
+            a[j + 1] = a[j];  
+            j--;  
+        }
+
+        // Chen key vao vi tri dung
+        a[j + 1] = key;  
+    }
+}
+
+int main() {
+    int n;  
+    cin >> n; // Nhap so phan tu cua mang
+    int a[n];  
+
+    // Nhap mang
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];  
+    }
+
+    // Goi ham sap xep chen
+    insertion_sort(a, n);  
+
+    // In mang da sap xep
+    for (int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
