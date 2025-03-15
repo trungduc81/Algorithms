@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std; 
+
+// Ham tron hai mang con da duoc sap xep thanh mot mang da sap xep
+void merge(int a[], int l, int mid, int r) {
+    int i = l, j = mid + 1, k = 0;
+    
+    // So sanh va tron hai mang con vao mang b
+    while (i <= mid && j <= r) {
+        if (a[i] < a[j]) 
+            b[k++] = a[i++];
+        else 
+            b[k++] = a[j++];
+    }
+
+    // Neu con phan tu chua duoc tron trong mang con trai
+    while (i <= mid) b[k++] = a[i++];
+    // Neu con phan tu chua duoc tron trong mang con phai
+    while (j <= r)   b[k++] = a[j++];
+
+    // Sao chep mang b da sap xep ve lai mang a ban dau
+    for (int i = 0; i < k; i++) 
+        a[l + i] = b[i];
+}
+
+// Ham sap xep Merge Sort
+void mergeSort(int a[], int l, int r) {
+    if (l < r) { 
+        int mid = l + (r - l) / 2; // Tim vi tri giua
+        mergeSort(a, l, mid); // Sap xep nua trai
+        mergeSort(a, mid + 1, r); // Sap xep nua phai
+        merge(a, l, mid, r); // Tron hai nua lai
+    }
+}
+
+// Ham in mang ra man hinh
+void in(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() { 
+    int t; 
+    cin >> t; 
+    while (t--) {
+        int n; 
+        cin >> n; 
+        int a[n]; 
+        for (int i = 0; i < n; i++) {
+            cin >> a[i]; 
+        } 
+        mergeSort(a, 0, n - 1); 
+        in(a, n); // In ket qua
+    }
+}
