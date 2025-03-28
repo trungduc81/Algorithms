@@ -1,0 +1,15 @@
+Với mảng a có n phần tử kiểm tra xem có thể tạo ra 1 dãy con có tổng bằng S hay không ? 
+
+//
+mảng dp[S] 
+dp[j] = true nếu có tập con có tổng bằng j.
+
+Ban đầu: dp[0] = true (tổng 0 luôn có thể tạo từ tập rỗng).
+
+Các dp[j] = false (chưa tìm thấy tập con nào có tổng bằng j).
+
+Duyệt từng phần tử a[i], cập nhật dp[j] từ phải về trái.
+
+Nếu đã có dp[j - a[i]] = true → dp[j] = true.
+
+Duyệt từ sum về 0 để tránh dùng lại phần tử a[i] trong cùng vòng lặp
